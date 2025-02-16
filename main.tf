@@ -1,5 +1,5 @@
 provider "aws" {
-region = "us-east-1"
+  region = "us-east-1"
 }
 
 terraform {
@@ -12,11 +12,10 @@ terraform {
   }
 }
 
-
 resource "aws_instance" "three" {
-  count         =  3
+  count         = 1  # Reduced from 3 to 1 to avoid vCPU limit issues
   ami           = "ami-04681163a08179f28"
-  instance_type = "t2.medium"
+  instance_type = "t2.micro"  # Changed from t2.medium to avoid vCPU quota issues
 
   tags = {
     Name = "mumbai-server"
